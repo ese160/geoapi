@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="src/style.css" rel="stylesheet" type="text/css"/>
+        <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<title>Mock</title>
+
+</head>
+    <title>Mock</title>
+
+
+
+    <style>
+        h1 {
+            font-size: 39px;
+            text-align: center;
+            color: blue;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <h1> Geolocation API</h1>
+
+    <button>
+        Current location
+    </button>
+
+    <script>
+    function showTemperature(response) {
+        let temperature = Math.round(response.data.main.temp);
+
+        let h1 = document.querySelector("h1");
+        h1 = `the outside temperature is ${temperature} c`;
+    }
+
+
+        function retrievePosition(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            let units = "metric";
+            let apiKey = "8044f439bc2fa3a0210091488f54f3cc";
+        let apiEndpoint = "http://api.openweathermap.org/data/2.5/weather";
+    let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+;
+
+axios.get(apiUrl).then(showTemperature);
+        }
+
+    navigator.geolocation.getCurrentPosition(retrievePosition);
+    </script>
+</body>
+
+
+</html>
